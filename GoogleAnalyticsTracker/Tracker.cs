@@ -10,19 +10,8 @@ namespace GoogleAnalyticsTracker
 {
     public class Tracker
     {
-        /*
-        *   Author: Tyler Hughes
-        *   Credit for the Track function and the Enum HitType goes to 0liver (https://gist.github.com/0liver/11229128)
-        *   Credit goes to spyriadis (http://www.spyriadis.net/2014/07/google-analytics-measurement-protocol-track-events-c/)
-        *       for the idea of putting the values for each tracking method in its own function
-        *
-        *   Documentation of the Google Analytics Measurement Protocol can be found at:
-        *   https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide
-        */
-
         private string endpoint = "http://www.google-analytics.com/collect";
-        private string googleVersion = "1";
-        private string googleTrackingID = "UA-XXXX-Y";
+        private string googleTrackingID = "UA-XXXXXXXX-XX";
         private string googleClientID = "555";
 
         public Tracker(string trackingID, string clientID)
@@ -113,7 +102,7 @@ namespace GoogleAnalyticsTracker
             {
                 var data = new Dictionary<string, string>()
                 {
-                    { "v", googleVersion },         // The protocol version. The value should be 1.
+                    { "v", "1" },                   // The protocol version. The value should be 1.
                     { "tid", googleTrackingID },    // Tracking ID / Web property / Property ID.
                     { "cid", googleClientID }       // Anonymous Client ID (must be unique).
                 };
