@@ -48,7 +48,7 @@ namespace GoogleAnalyticsTracker
             Track(values);
         }
 
-        public void TrackTransactions(string id, string affiliation, string revenue, string shipping, string tax, string code)
+        public void TrackTransaction(string id, string affiliation, string revenue, string shipping, string tax, string code)
         {
             if (string.IsNullOrEmpty(id)) throw new ArgumentNullException("id");
 
@@ -111,8 +111,8 @@ namespace GoogleAnalyticsTracker
             Track(values);
         }
 
-        private void TrackUserTiming()
-        {
+        //public void TrackUserTiming()
+        //{
             //var values = DefaultValues;
 
             //values.Add("t", HitType.@timing.ToString());          // Timing hit type
@@ -128,7 +128,7 @@ namespace GoogleAnalyticsTracker
             //values.Add("srt", label);                             // Server response time.
 
             //Track(values);
-        }
+        //}
 
         public void TrackScreenview(string name, string version, string id, string installerId, string description)
         {
