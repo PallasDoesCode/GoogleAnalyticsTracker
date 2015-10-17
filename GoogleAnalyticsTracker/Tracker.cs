@@ -47,18 +47,17 @@ namespace GoogleAnalyticsTracker
             Track(values);
         }
 
-        public void TrackPageview(string category, string action, string label, int? value = null)
+        public void TrackPageview(string hostname, string page, string title)
         {
-            if (string.IsNullOrEmpty(category)) throw new ArgumentNullException("category");
-            if (string.IsNullOrEmpty(action)) throw new ArgumentNullException("action");
+            if (string.IsNullOrEmpty(hostname)) throw new ArgumentNullException("hostname");
+            if (string.IsNullOrEmpty(page)) throw new ArgumentNullException("action");
 
             var values = DefaultValues;
 
-            values.Add("t", HitType.@pageview.ToString());          // Event hit type
-            values.Add("ec", category);                             // Event Category. Required.
-            values.Add("ea", action);                               // Event Action. Required.
-            if (label != null) values.Add("el", label);             // Event label.
-            if (value != null) values.Add("ev", value.ToString());  // Event value.
+            values.Add("t", HitType.@pageview.ToString());          // Pageview hit type
+            values.Add("dh", hostname);                             // Document hostname. Required.
+            values.Add("dp", page);                                 // Page. Required.
+            if (title != null) values.Add("el", title);             // Title. Required.
 
             Track(values);
         }
@@ -103,8 +102,9 @@ namespace GoogleAnalyticsTracker
 
         private enum HitType
         {
-            @event,
-            @pageview,
+            // t is the HitType
+            @event,     // Used for event tracking, measuring actions, combining impressions and actions, measuring refunds
+            @pageview,  // Used for page tracking, measuring impressions, measuring purchases, measuring the checkout process
         }
 
         private Dictionary<string, string> DefaultValues
