@@ -57,7 +57,7 @@ namespace GoogleAnalyticsTracker
             values.Add("t", HitType.@pageview.ToString());          // Pageview hit type
             values.Add("dh", hostname);                             // Document hostname. Required.
             values.Add("dp", page);                                 // Page. Required.
-            if (title != null) values.Add("el", title);             // Title. Required.
+            if (title != null) values.Add("dt", title);             // Title. Required.
 
             Track(values);
         }
