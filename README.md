@@ -4,15 +4,17 @@ GoogleAnalyticsTracker started as a simple C# wrapper developed by [Oliver Fried
 
 ### Examples
 
+**Event Tracking**
 Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
 
 tracker.TrackEvent("Category", "Action", "Small Description");
 
-
+**Page
 Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
 
-tracker.TrackPageview("Category", "Action", "Small Description");
+tracker.TrackPageview("http://mysite.com", "/home", "Home Page");
 
 
 **Note:**
+
 It may take 2+ hours for the data to be reflect in your Google Analytics dashboard.
