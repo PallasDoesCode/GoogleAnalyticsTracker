@@ -104,31 +104,31 @@ namespace GoogleAnalyticsTracker
         {
             var values = DefaultValues;
 
-            values.Add("t", HitType.@exception.ToString());                             // Exception hit type
-            values.Add("exd", description);                                             // Exception description
-            if (isFatal != null) values.Add("exf", isFatal);                            // Exception is fatal?
+            values.Add("t", HitType.@exception.ToString());                                 // Exception hit type
+            if (string.IsNullOrWhiteSpace(description)) values.Add("exd", description);     // Exception description
+            if (isFatal != null) values.Add("exf", isFatal);                                // Exception is fatal?
 
             Track(values);
         }
 
-        //public void TrackUserTiming()
-        //{
-            //var values = DefaultValues;
+        public void TrackUserTiming(string category, string variable, string time, string label, string dns, string pageDLtime, string redirectTime, string tcpConnectTime, string serverResponseTime)
+        {
+            var values = DefaultValues;
 
-            //values.Add("t", HitType.@timing.ToString());                              // Timing hit type
-            //values.Add("utc", category);                                              // Timing category.
-            //values.Add("utv", variable);                                              // Timing variable.
-            //values.Add("utt", time);                                                  // Timing time.
-            //values.Add("utl", label);                                                 // Timing label.
+            values.Add("t", HitType.@timing.ToString());                                                    // Timing hit type
+            values.Add("utc", category);                                                                    // Timing category.
+            values.Add("utv", variable);                                                                    // Timing variable.
+            values.Add("utt", time);                                                                        // Timing time.
+            values.Add("utl", label);                                                                       // Timing label.
 
-            //values.Add("dns", category);                                              // DNS load time.
-            //values.Add("pdt", variable);                                              // Page download time.
-            //values.Add("rrt", time);                                                  // Redirect time.
-            //values.Add("tcp", label);                                                 // TCP connect time.
-            //values.Add("srt", label);                                                 // Server response time.
+            if (string.IsNullOrWhiteSpace(dns)) values.Add("dns", dns);                                     // DNS load time.
+            if (string.IsNullOrWhiteSpace(pageDLtime)) values.Add("pdt", pageDLtime);                       // Page download time.
+            if (string.IsNullOrWhiteSpace(redirectTime)) values.Add("rrt", redirectTime);                   // Redirect time.
+            if (string.IsNullOrWhiteSpace(tcpConnectTime)) values.Add("tcp", tcpConnectTime);               // TCP connect time.
+            if (string.IsNullOrWhiteSpace(serverResponseTime)) values.Add("srt", serverResponseTime);       // Server response time.
 
-            //Track(values);
-        //}
+            Track(values);
+        }
 
         public void TrackScreenview(string name, string version, string id, string installerId, string description)
         {
