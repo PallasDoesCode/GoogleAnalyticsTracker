@@ -8,14 +8,16 @@ This project was created using the [Google Analytics Measurement Protocol docume
 
 #### **Event Tracking**
 ```csharp
-Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
-tracker.TrackEvent("Category", "Action", "Small Description");
+Tracker tracker = new Tracker( "UA-XXXXXXXX-XX", "555" );
+var url = tracker.GetEventTrackingUrl("Category", "Action", "Small Description");
+tracker.Track(url);
 ```
 #### **Page Tracking**
 
 ```csharp
 Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
-tracker.TrackPageview("http://mysite.com", "/home", "Home Page");
+var url = tracker.GetPageviewTrackingUrl("http://mysite.com", "/home", "Home Page");
+tracker.Track(url);
 ```
 
 ### **Note:**
