@@ -1,2 +1,4 @@
 language: csharp
 solution: GoogleAnalyticsTracker.sln
+install:
+  - nuget restore GoogleAnalyticsTracker.sln
