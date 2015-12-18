@@ -7,16 +7,16 @@ Documentation for the Google Analytics Measurement Protocol can be found at:
 https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide
 
 #### **Event Tracking**
+```csharp
 Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
-
 tracker.TrackEvent("Category", "Action", "Small Description");
-
+```
 #### **Page Tracking**
 
+```csharp
 Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
-
 tracker.TrackPageview("http://mysite.com", "/home", "Home Page");
-
+```
 
 ### **Note:**
 It may take 2+ hours for the data to be reflect in your Google Analytics dashboard.
