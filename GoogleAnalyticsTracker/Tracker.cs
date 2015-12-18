@@ -20,7 +20,12 @@ namespace GoogleAnalyticsTracker
             this.googleClientID = clientID;
         }
 
-        public void TrackEvent(string category, string action, string label, int? value = null)
+        public void InitializeValues(string type)
+        {
+
+        }
+
+        public string TrackEvent(string category, string action, string label, int? value = null)
         {
             if (string.IsNullOrEmpty(category)) throw new ArgumentNullException("category");
             if (string.IsNullOrEmpty(action)) throw new ArgumentNullException("action");
@@ -30,25 +35,25 @@ namespace GoogleAnalyticsTracker
             values.Add("t", HitType.@event.ToString());                                 // Event hit type
             values.Add("ec", category);                                                 // Event Category. Required.
             values.Add("ea", action);                                                   // Event Action. Required.
-            if (string.IsNullOrWhiteSpace(label)) values.Add("el", label);              // Event label.
-            if (value != null) values.Add("ev", value.ToString());                      // Event value.
+            if (!string.IsNullOrWhiteSpace(label)) values.Add("el", label);              // Event label.
+            if (value.HasValue) values.Add("ev", value.ToString());                      // Event value.
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        public void TrackPageview(string hostname, string page, string title)
+        public string TrackPageview(string hostname, string page, string title)
         {
             var values = DefaultValues;
 
             values.Add("t", HitType.@pageview.ToString());                              // Pageview hit type
             values.Add("dh", hostname);                                                 // Document hostname.
             values.Add("dp", page);                                                     // Page.
-            if (string.IsNullOrWhiteSpace(title)) values.Add("dt", title);              // Title.
+            if (!string.IsNullOrWhiteSpace(title)) values.Add("dt", title);              // Title.
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        public void TrackTransaction(string id, string affiliation, string revenue, string shipping, string tax, string code)
+        public string TrackTransaction(string id, string affiliation, string revenue, string shipping, string tax, string code)
         {
             if (string.IsNullOrEmpty(id)) throw new ArgumentNullException("id");
 
@@ -60,12 +65,12 @@ namespace GoogleAnalyticsTracker
             values.Add("tr", revenue);                                                  // Transaction revenue.
             values.Add("ts", shipping);                                                 // Transaction shipping.
             values.Add("tt", tax);                                                      // Transaction tax.
-            if (string.IsNullOrWhiteSpace(code)) values.Add("cu", code);                // Currency Code.
+            if (!string.IsNullOrWhiteSpace(code)) values.Add("cu", code);                // Currency Code.
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        public void TrackTransactionItem(string id, string name, string price, string quantity, string sku, string variation, string code)
+        public string TrackTransactionItem(string id, string name, string price, string quantity, string sku, string variation, string code)
         {
             if (string.IsNullOrEmpty(id)) throw new ArgumentNullException("id");
             if (string.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
@@ -79,12 +84,12 @@ namespace GoogleAnalyticsTracker
             values.Add("iq", quantity);                                                 // Item quantity.
             values.Add("ic", sku);                                                      // Item code/SKU.
             values.Add("iv", variation);                                                // Item variation/category.
-            if (string.IsNullOrWhiteSpace(code)) values.Add("cu", code);                // Currency Code.
+            if (!string.IsNullOrWhiteSpace(code)) values.Add("cu", code);                // Currency Code.
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        public void TrackSocial(string action, string network, string target)
+        public string TrackSocial(string action, string network, string target)
         {
             if (string.IsNullOrEmpty(action)) throw new ArgumentNullException("action");
             if (string.IsNullOrEmpty(network)) throw new ArgumentNullException("network");
@@ -95,23 +100,23 @@ namespace GoogleAnalyticsTracker
             values.Add("t", HitType.@social.ToString());                                // Social hit type
             values.Add("sa", action);                                                   // Social Action. Required.
             values.Add("sn", network);                                                  // Social Network. Required.
-            if (string.IsNullOrWhiteSpace(target)) values.Add("st", target);            // Social Target. Required.
+            if (!string.IsNullOrWhiteSpace(target)) values.Add("st", target);            // Social Target. Required.
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        public void TrackException(string description, string isFatal)
+        public string TrackException(string description, string isFatal)
         {
             var values = DefaultValues;
 
             values.Add("t", HitType.@exception.ToString());                                 // Exception hit type
-            if (string.IsNullOrWhiteSpace(description)) values.Add("exd", description);     // Exception description
+            if (!string.IsNullOrWhiteSpace(description)) values.Add("exd", description);     // Exception description
             if (isFatal != null) values.Add("exf", isFatal);                                // Exception is fatal?
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        public void TrackUserTiming(string category, string variable, string time, string label, string dns, string pageDLtime, string redirectTime, string tcpConnectTime, string serverResponseTime)
+        public string TrackUserTiming(string category, string variable, string time, string label, string dns, string pageDLtime, string redirectTime, string tcpConnectTime, string serverResponseTime)
         {
             var values = DefaultValues;
 
@@ -121,16 +126,16 @@ namespace GoogleAnalyticsTracker
             values.Add("utt", time);                                                                        // Timing time.
             values.Add("utl", label);                                                                       // Timing label.
 
-            if (string.IsNullOrWhiteSpace(dns)) values.Add("dns", dns);                                     // DNS load time.
-            if (string.IsNullOrWhiteSpace(pageDLtime)) values.Add("pdt", pageDLtime);                       // Page download time.
-            if (string.IsNullOrWhiteSpace(redirectTime)) values.Add("rrt", redirectTime);                   // Redirect time.
-            if (string.IsNullOrWhiteSpace(tcpConnectTime)) values.Add("tcp", tcpConnectTime);               // TCP connect time.
-            if (string.IsNullOrWhiteSpace(serverResponseTime)) values.Add("srt", serverResponseTime);       // Server response time.
+            if (!string.IsNullOrWhiteSpace(dns)) values.Add("dns", dns);                                     // DNS load time.
+            if (!string.IsNullOrWhiteSpace(pageDLtime)) values.Add("pdt", pageDLtime);                       // Page download time.
+            if (!string.IsNullOrWhiteSpace(redirectTime)) values.Add("rrt", redirectTime);                   // Redirect time.
+            if (!string.IsNullOrWhiteSpace(tcpConnectTime)) values.Add("tcp", tcpConnectTime);               // TCP connect time.
+            if (!string.IsNullOrWhiteSpace(serverResponseTime)) values.Add("srt", serverResponseTime);       // Server response time.
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        public void TrackScreenview(string name, string version, string id, string installerId, string description)
+        public string TrackScreenview(string name, string version, string id, string installerId, string description)
         {
             var values = DefaultValues;
 
@@ -141,27 +146,31 @@ namespace GoogleAnalyticsTracker
             values.Add("aiid", installerId);                                            // App Installer Id.
             values.Add("cd", description);                                              // Screen name/content description.
 
-            Track(values);
+            return GetUrl(values);
         }
 
-        private void Track(Dictionary<string, string> values)
+        private string GetUrl(Dictionary<string, string> values)
+        {
+            var url = values
+                .Aggregate("", (data, next) => string.Format("{0}&{1}={2}", data, next.Key, HttpUtility.UrlEncode(next.Value)))
+                .TrimEnd('&');
+
+            return url;
+        }
+
+        private void Track(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(endpoint);
             request.Method = "POST";
             request.KeepAlive = false;
 
-            var postDataString = values
-                .Aggregate("", (data, next) => string.Format("{0}&{1}={2}", data, next.Key,
-                                                             HttpUtility.UrlEncode(next.Value)))
-                .TrimEnd('&');
-
             // set the Content-Length header to the correct value
-            request.ContentLength = Encoding.UTF8.GetByteCount(postDataString);
+            request.ContentLength = Encoding.UTF8.GetByteCount(url);
 
             // write the request body to the request
             using (var writer = new StreamWriter(request.GetRequestStream()))
             {
-                writer.Write(postDataString);
+                writer.Write(url);
             }
 
             try
