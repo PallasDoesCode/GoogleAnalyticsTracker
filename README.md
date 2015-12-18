@@ -3,8 +3,7 @@
 
 GoogleAnalyticsTracker started as a simple C# wrapper developed by [Oliver Friedrich](https://gist.github.com/0liver/11229128). It was designed to help a [StackOverflow user with a problem](http://stackoverflow.com/a/23253778/1110819) they were having sending data to Google Analytics.
 
-Documentation for the Google Analytics Measurement Protocol can be found at:
-https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide
+This project was created using the [Google Analytics Measurement Protocol documentation](https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide) found on the Google Developers website.
 
 #### **Event Tracking**
 ```csharp
