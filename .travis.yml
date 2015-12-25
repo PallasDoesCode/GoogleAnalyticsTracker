@@ -6,4 +6,4 @@ notifications:
     on_failure: change
 solution: GoogleAnalyticsTracker.sln
 script:
-  - xbuild GoogleAnalyticsTracker.sln
+  - xbuild travis.proj
