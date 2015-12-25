@@ -5,3 +5,5 @@ notifications:
     on_success: change
     on_failure: change
 solution: GoogleAnalyticsTracker.sln
+script:
+  - xbuild travis.proj
