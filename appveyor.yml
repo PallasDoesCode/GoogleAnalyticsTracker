@@ -17,7 +17,5 @@ version: 1.0.{build}
 
 configuration: Debug
 platform: Any CPU
-before_build:
-- nuget restore GoogleAnalyticsTracker.sln
 build:
   verbosity: minimal
