@@ -17,7 +17,7 @@ version: 1.0.{build}
 
 configuration: Debug
 platform: Any CPU
-before_build
+before_build:
 - nuget restore %solutionFile%
 build:
   verbosity: minimal
