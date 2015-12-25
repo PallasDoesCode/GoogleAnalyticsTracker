@@ -56,7 +56,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="IWebRequestCreate.cs" />
-    <Compile Include="ShowMessage.cs" />
     <Compile Include="TrackerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebRequestCreate.cs" />
