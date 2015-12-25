@@ -20,5 +20,51 @@ var url = tracker.GetPageviewTrackingUrl("http://mysite.com", "/home", "Home Pag
 tracker.Track(url);
 ```
 
+**Note:** The information on the methods below continue to be a work in progress and may not be completely accurate. 
+
+#### **Social Interactions**
+```csharp
+Tracker tracker = new Tracker( "UA-XXXXXXXX-XX", "555" );
+var url = tracker.GetSocialTrackingUrl("Category", "Action", "Small Description");
+tracker.Track(url);
+```
+#### **Exception Tracking**
+
+```csharp
+Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
+var url = tracker.GetExceptionTrackingUrl("http://mysite.com", "/home", "Home Page");
+tracker.Track(url);
+```
+
+#### **User Timing Tracking**
+```csharp
+Tracker tracker = new Tracker( "UA-XXXXXXXX-XX", "555" );
+var url = tracker.GetUserTimingTrackingUrl("Category", "Action", "Small Description");
+tracker.Track(url);
+```
+#### **App/Screen Tracking**
+
+```csharp
+Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
+var url = tracker.GetScreenviewTrackingUrl("http://mysite.com", "/home", "Home Page");
+tracker.Track(url);
+```
+
+### **Ecommerce Tracking**
+
+#### **Transaction**
+```csharp
+Tracker tracker = new Tracker( "UA-XXXXXXXX-XX", "555" );
+var url = tracker.GetTransactionTrackingUrl("Category", "Action", "Small Description");
+tracker.Track(url);
+```
+#### **Transaction Item**
+
+```csharp
+Tracker tracker = new Tracker("UA-XXXXXXXX-XX", "555");
+var url = tracker.GetTransactionItemTrackingUrl("http://mysite.com", "/home", "Home Page");
+tracker.Track(url);
+```
+
 ### **Note:**
 It may take 2+ hours for the data to be reflect in your Google Analytics dashboard.
