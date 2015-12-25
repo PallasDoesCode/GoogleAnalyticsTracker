@@ -35,7 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -50,8 +55,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="IWebRequestCreate.cs" />
+    <Compile Include="ShowMessage.cs" />
     <Compile Include="TrackerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebRequestCreate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoogleAnalyticsTracker\GoogleAnalyticsTracker.csproj">
+      <Project>{35e424bd-bf64-47e2-8798-9c3b59f37806}</Project>
+      <Name>GoogleAnalyticsTracker</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
