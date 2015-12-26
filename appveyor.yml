@@ -22,3 +22,6 @@ before_build:
 build:
   project: GoogleAnalyticsTracker/GoogleAnalyticsTracker.csproj
   verbosity: minimal
+artifacts:
+- path: GoogleAnalyticsTracker/bin/Debug/GoogleAnalyticsTracker.dll
+  name: GoogleAnalyticsTracker.dll
