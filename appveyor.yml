@@ -20,4 +20,5 @@ platform: Any CPU
 before_build:
 - nuget restore %solutionFile%
 build:
+  project: GoogleAnalyticsTracker/GoogleAnalyticsTracker.csproj
   verbosity: minimal
