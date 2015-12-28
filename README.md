@@ -1,6 +1,5 @@
 # GoogleAnalyticsTracker
 [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/udlspav2sr7fu3dc/branch/master?svg=true)](https://ci.appveyor.com/project/RandomlyKnighted/googleanalyticstracker/branch/master)
-[![Travis CI Build Status](https://travis-ci.org/RandomlyKnighted/GoogleAnalyticsTracker.svg?branch=master)](https://travis-ci.org/RandomlyKnighted/GoogleAnalyticsTracker)
 [![Coverage Status](https://coveralls.io/repos/RandomlyKnighted/GoogleAnalyticsTracker/badge.svg?branch=master&service=github)](https://coveralls.io/github/RandomlyKnighted/GoogleAnalyticsTracker?branch=master)
 
 GoogleAnalyticsTracker started as a simple C# wrapper developed by [Oliver Friedrich](https://gist.github.com/0liver/11229128). It was designed to help a [StackOverflow user with a problem](http://stackoverflow.com/a/23253778/1110819) they were having sending data to Google Analytics.
