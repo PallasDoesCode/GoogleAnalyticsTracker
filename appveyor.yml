@@ -20,7 +20,7 @@ platform: Any CPU
 before_build:
 - nuget restore %solutionFile%
 build:
-  project: GoogleAnalyticsTracker/GoogleAnalyticsTracker.csproj
+  project: GoogleAnalyticsTracker.sln
   verbosity: minimal
 artifacts:
 - path: GoogleAnalyticsTracker/bin/Debug/GoogleAnalyticsTracker.dll
