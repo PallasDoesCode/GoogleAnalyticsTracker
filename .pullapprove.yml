@@ -1,4 +1,4 @@
 approve_by_comment: true
-approve_regex: ['\:shipit\:/g', 'Approved']
+approve_regex: '^(Approved|:shipit:)'
 author_approval: ignored
 reset_on_push: true
